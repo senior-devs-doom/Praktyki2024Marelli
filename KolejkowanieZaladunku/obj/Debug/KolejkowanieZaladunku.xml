@@ -1,0 +1,50 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+KolejkowanieZaladunku
+</name>
+</assembly>
+<members>
+<member name="T:KolejkowanieZaladunku.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:KolejkowanieZaladunku.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:KolejkowanieZaladunku.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="P:KolejkowanieZaladunku.My.Resources.Resources.background">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:KolejkowanieZaladunku.My.Resources.Resources.Marelli_logo_primary_RGB_POS_1_2263_">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:KolejkowanieZaladunku.My.Resources.Resources.MarelliLogo">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="M:KolejkowanieZaladunku.RapidConnection.RunQueryNoData(System.String)">
+ <summary>
+ Runs previously set query without filling data to datatable.  
+ </summary>
+ <param name="ExecuteType">Options 'Nq' (default) for Insert / Update / Delete queries, 'Sc' for Select query </param>
+ <returns>Number of rows affected by Insert / Update / Delete query for 'Nq' exceution type or 
+ <br>Value of first row and first column in Select query for 'Sc' execution type</br>     
+ </returns>
+</member>
+</members>
+</doc>
