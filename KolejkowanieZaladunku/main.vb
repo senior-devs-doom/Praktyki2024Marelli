@@ -26,9 +26,9 @@
             .Padding = New Padding(0)
             .Margin = New Padding(0)
             ' Set width of table columns as a percentage of the table's total width
-            .ColumnStyles(0).Width = 106
+            .ColumnStyles(0).Width = 101
             For i As Integer = 1 To 4
-                .ColumnStyles(i).Width = 449
+                .ColumnStyles(i).Width = 453
 
             Next
 
@@ -76,6 +76,7 @@
         locationButton.Appearance = Appearance.Button
         locationButton.Dock = DockStyle.Fill
         locationButton.TextAlign = ContentAlignment.MiddleCenter
+        locationButton.Margin = New Padding(0)
         ' Configure the toggle button text to show the current state
         locationButton.Checked = True ' starts as "Sosnowiec"
 
@@ -111,7 +112,7 @@
             .Name = "rampaLabel1"
             .ForeColor = Color.White
             .BackColor = Color.FromArgb(0, 156, 222)
-            .Margin = New Padding(1, 1, 0, 0)
+            .Margin = New Padding(0)
             .TextAlign = ContentAlignment.MiddleCenter
             .Font = New Font("Microsoft Sans Serif", 18, FontStyle.Bold)
             .AutoSize = False
@@ -125,7 +126,7 @@
             .Name = "rampaLabel2"
             .BackColor = Color.FromArgb(0, 156, 222)
             .ForeColor = Color.White
-            .Margin = New Padding(1, 1, 0, 0)
+            .Margin = New Padding(0)
             .TextAlign = ContentAlignment.MiddleCenter
             .Font = New Font("Microsoft Sans Serif", 18, FontStyle.Bold)
             .AutoSize = False
@@ -139,7 +140,7 @@
             .Name = "rampaLabel3"
             .BackColor = Color.FromArgb(0, 156, 222)
             .ForeColor = Color.White
-            .Margin = New Padding(1, 1, 0, 0)
+            .Margin = New Padding(0)
             .TextAlign = ContentAlignment.MiddleCenter
             .Font = New Font("Microsoft Sans Serif", 18, FontStyle.Bold)
             .AutoSize = False
@@ -153,7 +154,7 @@
             .Name = "rampaLabel4"
             .BackColor = Color.FromArgb(0, 156, 222)
             .ForeColor = Color.White
-            .Margin = New Padding(1, 1, 3, 1)
+            .Margin = New Padding(0)
             .TextAlign = ContentAlignment.MiddleCenter
             .Font = New Font("Microsoft Sans Serif", 18, FontStyle.Bold)
             .AutoSize = False
@@ -169,17 +170,16 @@
         With menuRight
             .ColumnCount = 1
             .RowCount = 13
-            .Location = New Point(Me.ClientSize.Width - 29, 0) 'numbers here don't make sense, it's fine, don't think about it, everything's ffiiiinnneeeee
+            .Location = New Point(Me.ClientSize.Width - 29, 44) 'numbers here don't make sense, it's fine, don't think about it, everything's ffiiiinnneeeee
             .Width = 45
-            .Height = 473
+            .Height = 512
             .Name = "menu"
             .BackColor = Color.Transparent
             .Margin = New Padding(0)
             .Padding = New Padding(0)
 
-            .RowStyles.Add(New RowStyle(SizeType.Absolute, 44))
             .RowStyles.Add(New RowStyle(SizeType.Absolute, 41))
-            For i As Integer = 2 To 12
+            For i As Integer = 1 To 12
                 .RowStyles.Add(New RowStyle(SizeType.Absolute, 39))
             Next
         End With
@@ -194,7 +194,7 @@
             .Name = "menuButton"
             .Text = "≡"
             .Font = New Font("Microsoft Sans Serif", 18, FontStyle.Bold)
-            .BackColor = Color.FromArgb(0, 0, 200)
+            .BackColor = Color.FromArgb(0, 156, 222)
             .ForeColor = Color.White
             .Margin = New Padding(0, 0, 0, 1)
             .TextAlign = ContentAlignment.MiddleCenter
@@ -214,7 +214,8 @@
             .Name = "refreshButton"
             .Margin = New Padding(0, 0, 0, 1)
             .Dock = DockStyle.Fill
-            .BackColor = Color.LightCyan
+            .BackColor = Color.FromArgb(0, 156, 222)
+            .ForeColor = Color.White
             .FlatStyle = FlatStyle.Flat
             .FlatAppearance.BorderColor = Color.Black
             .FlatAppearance.BorderSize = 2
@@ -229,7 +230,8 @@
             .Name = "odbiorForm"
             .Margin = New Padding(0, 0, 0, 1)
             .Dock = DockStyle.Fill
-            .BackColor = Color.LightCyan
+            .BackColor = Color.FromArgb(0, 156, 222)
+            .ForeColor = Color.White
             .FlatStyle = FlatStyle.Flat
             .FlatAppearance.BorderColor = Color.Black
             .FlatAppearance.BorderSize = 2
@@ -244,7 +246,8 @@
             .Name = "szablonButton"
             .Margin = New Padding(0, 0, 0, 1)
             .Dock = DockStyle.Fill
-            .BackColor = Color.LightCyan
+            .BackColor = Color.FromArgb(0, 156, 222)
+            .ForeColor = Color.White
             .FlatStyle = FlatStyle.Flat
             .FlatAppearance.BorderColor = Color.Black
             .FlatAppearance.BorderSize = 2
@@ -259,7 +262,8 @@
             .Name = "KllientForm"
             .Margin = New Padding(0, 0, 0, 1)
             .Dock = DockStyle.Fill
-            .BackColor = Color.LightCyan
+            .BackColor = Color.FromArgb(0, 156, 222)
+            .ForeColor = Color.White
             .FlatStyle = FlatStyle.Flat
             .FlatAppearance.BorderColor = Color.Black
             .FlatAppearance.BorderSize = 2
@@ -274,7 +278,8 @@
             .Name = "przewoznikForm"
             .Margin = New Padding(0, 0, 0, 1)
             .Dock = DockStyle.Fill
-            .BackColor = Color.LightCyan
+            .BackColor = Color.FromArgb(0, 156, 222)
+            .ForeColor = Color.White
             .FlatStyle = FlatStyle.Flat
             .FlatAppearance.BorderColor = Color.Black
             .FlatAppearance.BorderSize = 2
@@ -282,7 +287,7 @@
         menuRight.Controls.Add(przewoznikForm, 1, 5)
         AddHandler przewoznikForm.Click, AddressOf przewoznikButton_Click
 
-        ' Other controls (legendLabel1, legendLabel2, legendLabel3, legendLabel4)
+        ' Other controls (legendLabel1, legendLabel2, legendLabel3, legendLabel4, legendlabel5, legendlabel6)
         ' can be adjusted in a similar manner if needed
         ' Creating and configuring legendLabel1
         Dim legendLabel1 As New Label()
@@ -298,7 +303,7 @@
         ' Creating and configuring legendLabel2
         Dim legendLabel2 As New Label()
         With legendLabel2
-            .Text = "Przygotowywane"
+            .Text = "Oczekujące"
             .Name = "legendLabel2"
             .Margin = New Padding(0)
             .Dock = DockStyle.Fill
@@ -332,6 +337,32 @@
         End With
         menuRight.Controls.Add(legendLabel4, 1, 10)
 
+        ' Creating and configuring legendLabel4
+        Dim legendLabel5 As New Label()
+        With legendLabel5
+            .Text = "Rozpoczęte"
+            .Name = "legendLabel5"
+            .AutoSize = False
+            .Margin = New Padding(0)
+            .Dock = DockStyle.Fill
+            .BackColor = Color.FromArgb(52, 210, 235)
+            .Visible = False
+        End With
+        menuRight.Controls.Add(legendLabel5, 1, 11)
+
+        Dim legendLabel6 As New Label()
+        With legendLabel6
+            .Text = "             Zmiana"
+            .Name = "legendLabel6"
+            .AutoSize = False
+            .Margin = New Padding(0)
+            .Dock = DockStyle.Fill
+            .BackColor = Color.White
+            .Visible = False
+            AddHandler .Paint, AddressOf DrawTriangleOnZlecenie
+        End With
+        menuRight.Controls.Add(legendLabel6, 1, 12)
+
         'width
         For Each kid As Control In menuRight.Controls
             kid.Width = 45
@@ -339,6 +370,8 @@
         Next
 
         'toggling Visibility based on UserRights
+        UserRights = 0      'DEBUG DEBUG DEBUG DEBUG GEDB DEBUG BUDGE BUGE DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG GEDB DEBUG BUDGE BUGE DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG GEDB DEBUG BUDGE BUGE DEBUG DEBUG
+        UserId = 0          'DEBUG DEBUG DEBUG DEBUG GEDB DEBUG BUDGE BUGE DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG GEDB DEBUG BUDGE BUGE DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG GEDB DEBUG BUDGE BUGE DEBUG DEBUG
         If UserRights = 1 Then 'magazyn
             odbiorForm.Visible = False
             szablonButton.Visible = False
@@ -354,18 +387,20 @@
     Private Function CreateButtonRow() As TableLayoutPanel
         ' Create a new TableLayoutPanel
         Dim tableLayoutPanel As New TableLayoutPanel()
-        tableLayoutPanel.Dock = DockStyle.Fill
-        tableLayoutPanel.Margin = New Padding(0)
-        tableLayoutPanel.Padding = New Padding(0)
-        tableLayoutPanel.RowCount = 1 ' Single row
-        tableLayoutPanel.ColumnCount = 7 ' seven columns
-        tableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10.0F)) ' 15% width for the left button
-        tableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10.0F))
-        tableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10.0F))
-        tableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 40.0F)) ' 70% width for the middle button
-        tableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10.0F)) '
-        tableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10.0F)) '
-        tableLayoutPanel.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10.0F)) ' 15% width for the rightest button
+        With tableLayoutPanel
+            .Dock = DockStyle.Fill
+            .Margin = New Padding(0)
+            .Padding = New Padding(0)
+            .RowCount = 1 ' Single row
+            .ColumnCount = 7 ' seven columns
+            .ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10.0F)) ' 15% width for the left button
+            .ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10.0F))
+            .ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10.0F))
+            .ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 40.0F)) ' 70% width for the middle button
+            .ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10.0F)) '
+            .ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10.0F)) '
+            .ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 10.0F)) ' 15% width for the rightest button
+        End With
 
         ' Create left button
         Dim leftButton As New Button()
@@ -450,6 +485,7 @@
         Dim picbox As New PictureBox()
         picbox.Image = My.Resources.MarelliLogo
         picbox.Padding = New Padding(0)
+        picbox.Margin = New Padding(0)
         picbox.Dock = DockStyle.Fill
         ' Set the SizeMode to StretchImage to ensure image fills the PictureBox while maintaining aspect ratio
         picbox.SizeMode = PictureBoxSizeMode.StretchImage
@@ -483,7 +519,7 @@
         If menuRight.Width = 220 Then
 
             Dim fonty As New Font("Microsoft Sans Serif", 18, FontStyle.Bold)
-            menuRight.Location = New Point(Me.ClientSize.Width - 45, 0)
+            menuRight.Location = New Point(Me.ClientSize.Width - 45, 44)
             menuRight.Width = 45
             For Each kid As Control In menuRight.Controls
                 kid.Width = 45
@@ -502,7 +538,7 @@
         Else
 
             Dim fonty As New Font("Microsoft Sans Serif", 12, FontStyle.Italic)
-            menuRight.Location = New Point(Me.ClientSize.Width - 220, 0)
+            menuRight.Location = New Point(Me.ClientSize.Width - 220, 44)
             menuRight.Width = 220
             For Each kid As Control In menuRight.Controls
                 kid.Width = 220
@@ -558,23 +594,37 @@
         Next
         Zlecenia.Clear() ' Clear the list after removing all panels
 
-        data = DateTimePicker1.Text
+        data = DateTimePicker1.Value
         If locationButton.Text = "Sosnowiec" Then
             lokalizacja = 0
         ElseIf locationButton.Text = "Katowice" Then
             lokalizacja = 1
         End If
+
         'all zlecenia from relevant date and location + their completion status
-        cmd = "select tblZlecenia.Godzina, tblZlecenia.RampaId, tblZlecenia.Czas, tblZlecenia.Palety, tblZlecenia.Uwagi, tblKlienci.Nazwa, tblZlecenia.ZlecenieId,tblOdbiory.Wydanie from praktyka.tblZlecenia inner join praktyka.tblKlienci on tblKlienci.IdKlienta=tblZlecenia.KlientID left join praktyka.tblOdbiory on tblOdbiory.IdZlecenia=tblZlecenia.zlecenieId where tblZlecenia.Data='" & data & "' AND tblZlecenia.LokalizacjaId = " & lokalizacja
+        cmd = "select tblZlecenia.Godzina, tblZlecenia.RampaId, tblZlecenia.Czas, tblZlecenia.Palety, tblZlecenia.Uwagi, tblKlienci.Nazwa, tblZlecenia.ZlecenieId,tblOdbiory.Wydanie, tblZlecenia.NrRejestracyjny, tblOdbiory.Przygotowanie, tblZlecenia.Zmieniono  from praktyka.tblZlecenia inner join praktyka.tblKlienci on tblKlienci.IdKlienta=tblZlecenia.KlientID left join praktyka.tblOdbiory on tblOdbiory.IdZlecenia=tblZlecenia.zlecenieId where tblZlecenia.Data='" & data & "' AND tblZlecenia.LokalizacjaId = " & lokalizacja
         sequel.SetCommand(cmd)
         sequel.RunDataQuery()
         For i As Integer = 0 To sequel.SQLDT.Rows.Count - 1
             AddZlecenie(sequel.SQLDT.Rows.Item(i)) 'one row at a time
         Next
+
+        'Now adding zlecenia from previous night that run past midnight
+        data = DateTimePicker1.Value.AddDays(-1)
+        cmd = "select tblZlecenia.Godzina, tblZlecenia.RampaId, tblZlecenia.Czas, tblZlecenia.Palety, tblZlecenia.Uwagi, tblKlienci.Nazwa, tblZlecenia.ZlecenieId,tblOdbiory.Wydanie, tblZlecenia.NrRejestracyjny, tblOdbiory.Przygotowanie, tblZlecenia.Zmieniono from praktyka.tblZlecenia inner join praktyka.tblKlienci on tblKlienci.IdKlienta=tblZlecenia.KlientID left join praktyka.tblOdbiory on tblOdbiory.IdZlecenia=tblZlecenia.zlecenieId where tblZlecenia.Data='" & data & "' AND tblZlecenia.LokalizacjaId = " & lokalizacja & " AND (DATEPART(HOUR, Godzina) * 60 + DATEPART(MINUTE, Godzina) + Czas) > 1440"
+        sequel.SetCommand(cmd)
+        sequel.RunDataQuery()
+        For i As Integer = 0 To sequel.SQLDT.Rows.Count - 1
+            Dim row = sequel.SQLDT.Rows.Item(i)
+            row(2) -= (TimeSpan.FromDays(1) - row(0)).TotalMinutes 'minuty = minuty - czas pomiędzy rozpoczęciem a północą
+            row(0) = TimeSpan.Zero 'godzina = 0:00
+            AddZlecenie(row)
+        Next
+
     End Sub
     Private Sub AddZlecenie(dataRow As System.Data.DataRow)
         'Row :
-        'Godzina, RampaID, Czas, Palety, Uwagi, Nazwa(Klienta), ZlecenieID, Wydane(Flaga czy zlecenie zakończono)
+        'Godzina, RampaID, Czas, Palety, Uwagi, Nazwa(Klienta), ZlecenieID, Wydane(Flaga czy zlecenie zakończono), numer rejestracyjny, przygotowanie(flaga),zmieniono(flaga)
         ' Create a new instance of a label
         Dim NewZlecenie As New Panel()
         Dim NewLabel As New Label()
@@ -586,17 +636,26 @@
         With NewLabel
             ' Set properties of the label
             If dataRow(4) <> "" Then ' jeśli są jakieś uwagi
-                .Text = dataRow(5) & ", " & dataRow(3) & " Palet" & Environment.NewLine & "Uwagi:'" & dataRow(4) & "'"
+                .Text = "NR.R. " & dataRow(8) & Environment.NewLine & dataRow(5) & ", " & dataRow(3) & " Palet" & Environment.NewLine & "Uwagi:'" & dataRow(4) & "'"
             Else
-                .Text = dataRow(5) & ", " & dataRow(3) & " Palet"
+                .Text = "NR.R. " & dataRow(8) & Environment.NewLine & dataRow(5) & ", " & dataRow(3) & " Palet"
             End If
             .Name = "zlecenie"
 
             .ForeColor = Color.White
             .Margin = New Padding(0)
+            .Padding = New Padding(0)
             .Dock = DockStyle.Fill
             .TextAlign = ContentAlignment.MiddleCenter
             .Font = New Font("Microsoft Sans Serif", 18, FontStyle.Bold)
+
+            'Draw triangle which signalizes change in top left
+            If Not IsDBNull(dataRow(10)) AndAlso dataRow(10) = True Then
+                ' Attach the new Paint event handler
+                AddHandler .Paint, AddressOf DrawTriangleOnZlecenie
+                ' Force the panel to repaint itself with the new handler
+                .Invalidate()
+            End If
         End With
         IdLabel.Visible = False
         IdLabel.Text = dataRow(6)
@@ -606,6 +665,16 @@
         NewZlecenie.Padding = New Padding(4)
 
         setZlecenieSize(NewZlecenie, startTime, dataRow(1), dataRow(2))
+
+        'ensure text fits inside panel
+        'Truns out Label is trash and you can't change the padding height in between top of label and begining of actual text
+        'hell, this fake padding size is tied to text size but it's not a set percentage. Pain
+        'maybe it can be fixed by setting label position few px above panel position, but sounds like hell to implement so no thanks
+        'this looks so bad my lord...
+        If NewZlecenie.Height < 32 Then
+            NewLabel.Font = New Font("Microsoft Sans Serif", NewZlecenie.Height - 12, FontStyle.Bold)
+        End If
+
 
         'setting isLate unoptimized, it doesn't need to execute for each individual recond, also it's fugly
         If DateTimePicker1.Text <> Now.ToString("yyyy-MM-dd") Then
@@ -624,52 +693,97 @@
         End If
 
 
-        If Not IsDBNull(dataRow(7)) AndAlso dataRow(7) = True Then   '   GREEN
+        If Not IsDBNull(dataRow(7)) AndAlso dataRow(7) = True Then          '   GREEN
             NewZlecenie.BackColor = Color.FromArgb(104, 207, 14) 'panel(border)
             NewLabel.BackColor = Color.FromArgb(82, 166, 8) 'label(background)
         Else
-            If isLate Then          '   RED
+            If isLate Then                                                  '   RED
                 NewZlecenie.BackColor = Color.FromArgb(242, 28, 17)
                 NewLabel.BackColor = Color.FromArgb(230, 77, 69)
-            Else                    '   YELLOW
-                NewZlecenie.BackColor = Color.FromArgb(255, 217, 64)
-                NewLabel.BackColor = Color.FromArgb(252, 202, 3)
+            Else
+                If Not IsDBNull(dataRow(9)) AndAlso dataRow(9) = True Then  '   Bluey
+                    NewZlecenie.BackColor = Color.FromArgb(52, 210, 235)
+                    NewLabel.BackColor = Color.FromArgb(20, 144, 163)
+                Else                                                        '   YELLOW
+                    NewZlecenie.BackColor = Color.FromArgb(255, 217, 64)
+                    NewLabel.BackColor = Color.FromArgb(252, 202, 3)
+                End If
             End If
         End If
 
         Me.Controls.Add(NewZlecenie)
         Zlecenia.Add(NewZlecenie)
         AddHandler NewLabel.Click, AddressOf Zlecenie_Click
-        NewZlecenie.BringToFront() 'for some reason table layout takes priority
+        AddHandler NewZlecenie.Click, Sub(sender, e) Zlecenie_Click(NewLabel, e) ' if clicked on new zlecenie(border) then click label
+        NewZlecenie.BringToFront() 'for some reason table layout takes priority if not specified
 
     End Sub
     Private Sub setZlecenieSize(NewOdbior As Panel, startCzas As Integer, Rampa As Integer, minuty As Integer)
-        Select Case Rampa
-            Case 0
-                NewOdbior.Left = 108
-            Case 1
-                NewOdbior.Left = 560
-            Case 2
-                NewOdbior.Left = 1012
-            Case 3
-                NewOdbior.Left = 1464
-            Case Else
-                NewOdbior.Left = 110
-                MessageBox.Show("Nie rozpoznano rampy do załadunku, pewnie wina programisty", "OOPS", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End Select
+        With NewOdbior
+            Select Case Rampa
+                Case 0
+                    .Left = 103
+                Case 1
+                    .Left = 557
+                Case 2
+                    .Left = 1011
+                Case 3
+                    .Left = 1465
+                Case Else
+                    .Left = 110
+                    MessageBox.Show("Nie rozpoznano rampy do załadunku, pewnie wina programisty", "OOPS", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End Select
 
-        NewOdbior.Top = 85 + startCzas * MinToPix
-        NewOdbior.Width = 451
-        NewOdbior.Height = minuty * MinToPix
-        If NewOdbior.Height + NewOdbior.Top > 1009 Then
-            NewOdbior.Height = 1009 - NewOdbior.Top
-        End If
+            .Top = 85 + startCzas * MinToPix
+            .Width = 453
+            .Height = minuty * MinToPix
+            If .Height + .Top > 1009 Then 'maximum size
+                .Height = 1009 - .Top
+            End If
+            If .Height < 24 Then 'minimum size
+                .Height = 24
+                .Padding = New Padding(2)
+            End If
+        End With
+    End Sub
+    Private Sub DrawTriangleOnZlecenie(sender As Object, e As PaintEventArgs)
+        ' Create points that define triangle.
+        Dim point1 As New Point(0, 0)  'top left
+        Dim point2 As New Point(0, 50)  ' top right
+        Dim point3 As New Point(100, 0) ' bottom left
 
+        Dim curvePoints As Point() = {point1, point2, point3}
+
+        ' Define brush and fill the triangle
+        Using brush As New SolidBrush(Color.FromArgb(255, 172, 28))  ' Change color as needed
+            e.Graphics.FillPolygon(brush, curvePoints)
+        End Using
+
+        ' Optionally, draw the outline of the triangle
+        'Using pen As New Pen(Color.Black)  ' Change outline color as needed
+        '    e.Graphics.DrawPolygon(pen, curvePoints)
+        'End Using
     End Sub
     Private Sub Zlecenie_Click(sender As Object, e As EventArgs)
         id = DirectCast(sender, Control).Parent.Controls(0).Text ' keeping id a string cause like, eh, it's going into a string anyway
-        Dim newForm As New UpdateFormLogistyka()
-        newForm.ShowDialog()
+        Select Case UserRights
+            Case 1
+                Dim newForm As New UpdateOdbiorMagazyn()
+                newForm.ShowDialog()
+            Case 2
+                Dim newForm As New UpdateOdbiorLogistyka()
+                newForm.ShowDialog()
+            Case Else
+                Dim result As DialogResult = MessageBox.Show("YES-logistyka NO-Magazyn", "mfw bezpłatny staż +_+", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                If result = DialogResult.Yes Then
+                    Dim newForm As New UpdateOdbiorLogistyka()
+                    newForm.ShowDialog()
+                ElseIf result = DialogResult.No Then
+                    Dim newForm As New UpdateOdbiorMagazyn()
+                    newForm.ShowDialog()
+                End If
+        End Select
+
         loadZlecenia()
         id = ""
     End Sub
@@ -693,6 +807,9 @@
         Me.ResumeLayout(True)
     End Sub
     Private Sub TableLayoutPanel1_MouseDown(sender As Object, e As MouseEventArgs) Handles TableLayoutPanel1.MouseDown
+        If UserRights = 1 Then ' no new forms for you >.<
+            Exit Sub
+        End If
 
         Dim hour As Integer
         Dim newForm As New OdbiorForm()
@@ -723,18 +840,20 @@
         OdbiorData = ""
         loadZlecenia()
     End Sub
-    Private Sub DebugMonkey_Click(sender As Object, e As EventArgs) Handles DebugMonkey.Click ' button for debugging
-
-    End Sub
     Private Sub DateTimePicker1_ValueChanged(sender As Object, e As EventArgs)
         loadZlecenia()
     End Sub
+    Private Sub DebugMonkey_Click(sender As Object, e As EventArgs) Handles DebugMonkey.Click ' button for debugging
+
+    End Sub
+
     'global variables
     Private Zlecenia As New List(Of Panel) 'panels representing individual data
     Private SOSRampy As New List(Of String)
     Private KATRampy As New List(Of String)
     Public MinToPix As New Single()
     Public UserRights As Integer '1-magazyn 2-logistyk undefined-admin
+    Public UserId As Integer 'ID pracownika
 
     Public OdbiorRamp As String 'for passing to odbior form
     Public OdbiorCzas As String 'for passing to odbior form

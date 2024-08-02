@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class UpdateOdbiorLogistyka
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class UpdateOdbiorMagazyn
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,9 +20,11 @@ Partial Class UpdateOdbiorLogistyka
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UpdateOdbiorLogistyka))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UpdateOdbiorMagazyn))
+        Me.FlagPanel = New System.Windows.Forms.FlowLayoutPanel()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.ComboBox4 = New System.Windows.Forms.ComboBox()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -49,8 +51,23 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
+        '
+        'FlagPanel
+        '
+        Me.FlagPanel.Location = New System.Drawing.Point(215, 601)
+        Me.FlagPanel.Name = "FlagPanel"
+        Me.FlagPanel.Size = New System.Drawing.Size(353, 133)
+        Me.FlagPanel.TabIndex = 82
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(479, 763)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(89, 43)
+        Me.Button2.TabIndex = 81
+        Me.Button2.Text = "Usuń"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'ComboBox4
         '
@@ -59,7 +76,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.ComboBox4.Location = New System.Drawing.Point(370, 365)
         Me.ComboBox4.Name = "ComboBox4"
         Me.ComboBox4.Size = New System.Drawing.Size(285, 37)
-        Me.ComboBox4.TabIndex = 52
+        Me.ComboBox4.TabIndex = 80
         '
         'ComboBox3
         '
@@ -70,7 +87,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.ComboBox3.Location = New System.Drawing.Point(370, 322)
         Me.ComboBox3.Name = "ComboBox3"
         Me.ComboBox3.Size = New System.Drawing.Size(285, 37)
-        Me.ComboBox3.TabIndex = 51
+        Me.ComboBox3.TabIndex = 79
         '
         'Label12
         '
@@ -78,7 +95,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label12.Location = New System.Drawing.Point(239, 368)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(100, 29)
-        Me.Label12.TabIndex = 50
+        Me.Label12.TabIndex = 78
         Me.Label12.Text = "Rampa*"
         '
         'Label11
@@ -87,7 +104,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label11.Location = New System.Drawing.Point(206, 325)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(142, 29)
-        Me.Label11.TabIndex = 49
+        Me.Label11.TabIndex = 77
         Me.Label11.Text = "Lokalizacja*"
         '
         'TextBox6
@@ -96,23 +113,23 @@ Partial Class UpdateOdbiorLogistyka
         Me.TextBox6.Multiline = True
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(285, 86)
-        Me.TextBox6.TabIndex = 48
+        Me.TextBox6.TabIndex = 76
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(370, 604)
+        Me.Button3.Location = New System.Drawing.Point(370, 763)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(89, 43)
-        Me.Button3.TabIndex = 47
+        Me.Button3.TabIndex = 75
         Me.Button3.Text = "Anuluj"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(211, 604)
+        Me.Button1.Location = New System.Drawing.Point(211, 763)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(137, 43)
-        Me.Button1.TabIndex = 46
+        Me.Button1.TabIndex = 74
         Me.Button1.Text = "Aktualizuj"
         Me.Button1.UseVisualStyleBackColor = True
         '
@@ -121,28 +138,28 @@ Partial Class UpdateOdbiorLogistyka
         Me.TextBox5.Location = New System.Drawing.Point(370, 456)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(59, 35)
-        Me.TextBox5.TabIndex = 45
+        Me.TextBox5.TabIndex = 73
         '
         'TextBox4
         '
         Me.TextBox4.Location = New System.Drawing.Point(370, 415)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(59, 35)
-        Me.TextBox4.TabIndex = 44
+        Me.TextBox4.TabIndex = 72
         '
         'TextBox3
         '
         Me.TextBox3.Location = New System.Drawing.Point(370, 199)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(285, 35)
-        Me.TextBox3.TabIndex = 43
+        Me.TextBox3.TabIndex = 71
         '
         'TextBox2
         '
         Me.TextBox2.Location = New System.Drawing.Point(370, 156)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(285, 35)
-        Me.TextBox2.TabIndex = 42
+        Me.TextBox2.TabIndex = 70
         '
         'MaskedTextBox1
         '
@@ -150,21 +167,21 @@ Partial Class UpdateOdbiorLogistyka
         Me.MaskedTextBox1.Mask = "00:00"
         Me.MaskedTextBox1.Name = "MaskedTextBox1"
         Me.MaskedTextBox1.Size = New System.Drawing.Size(71, 35)
-        Me.MaskedTextBox1.TabIndex = 41
+        Me.MaskedTextBox1.TabIndex = 69
         '
         'DateTimePicker1
         '
         Me.DateTimePicker1.Location = New System.Drawing.Point(370, 240)
         Me.DateTimePicker1.Name = "DateTimePicker1"
         Me.DateTimePicker1.Size = New System.Drawing.Size(165, 35)
-        Me.DateTimePicker1.TabIndex = 40
+        Me.DateTimePicker1.TabIndex = 68
         '
         'TextBox1
         '
         Me.TextBox1.Location = New System.Drawing.Point(370, 105)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(285, 35)
-        Me.TextBox1.TabIndex = 39
+        Me.TextBox1.TabIndex = 67
         '
         'ComboBox2
         '
@@ -172,7 +189,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.ComboBox2.Location = New System.Drawing.Point(370, 54)
         Me.ComboBox2.Name = "ComboBox2"
         Me.ComboBox2.Size = New System.Drawing.Size(285, 37)
-        Me.ComboBox2.TabIndex = 38
+        Me.ComboBox2.TabIndex = 66
         '
         'ComboBox1
         '
@@ -181,7 +198,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.ComboBox1.Location = New System.Drawing.Point(370, 6)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(285, 37)
-        Me.ComboBox1.TabIndex = 37
+        Me.ComboBox1.TabIndex = 65
         '
         'Label10
         '
@@ -189,7 +206,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label10.Location = New System.Drawing.Point(258, 504)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(81, 29)
-        Me.Label10.TabIndex = 36
+        Me.Label10.TabIndex = 64
         Me.Label10.Text = "Uwagi"
         '
         'Label9
@@ -198,7 +215,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label9.Location = New System.Drawing.Point(217, 459)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(131, 29)
-        Me.Label9.TabIndex = 35
+        Me.Label9.TabIndex = 63
         Me.Label9.Text = "Czas(min)*"
         '
         'Label8
@@ -207,7 +224,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label8.Location = New System.Drawing.Point(4, 108)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(344, 29)
-        Me.Label8.TabIndex = 34
+        Me.Label8.TabIndex = 62
         Me.Label8.Text = "Nr. Rejestracyjny(przewoźnika)"
         '
         'Label7
@@ -216,7 +233,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label7.Location = New System.Drawing.Point(250, 415)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(89, 29)
-        Me.Label7.TabIndex = 33
+        Me.Label7.TabIndex = 61
         Me.Label7.Text = "Palety*"
         '
         'Label6
@@ -225,7 +242,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label6.Location = New System.Drawing.Point(255, 202)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(84, 29)
-        Me.Label6.TabIndex = 32
+        Me.Label6.TabIndex = 60
         Me.Label6.Text = "Nr. Wz"
         '
         'Label5
@@ -234,7 +251,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label5.Location = New System.Drawing.Point(171, 159)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(168, 29)
-        Me.Label5.TabIndex = 31
+        Me.Label5.TabIndex = 59
         Me.Label5.Text = "Nr. Transportu"
         '
         'Label4
@@ -243,7 +260,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label4.Location = New System.Drawing.Point(227, 284)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(112, 29)
-        Me.Label4.TabIndex = 30
+        Me.Label4.TabIndex = 58
         Me.Label4.Text = "Godzina*"
         '
         'Label3
@@ -252,7 +269,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label3.Location = New System.Drawing.Point(267, 245)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(72, 29)
-        Me.Label3.TabIndex = 29
+        Me.Label3.TabIndex = 57
         Me.Label3.Text = "Data*"
         '
         'Label2
@@ -261,7 +278,7 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label2.Location = New System.Drawing.Point(193, 57)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(146, 29)
-        Me.Label2.TabIndex = 28
+        Me.Label2.TabIndex = 56
         Me.Label2.Text = "Przewoźnik*"
         '
         'Label1
@@ -270,24 +287,16 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label1.Location = New System.Drawing.Point(255, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(84, 29)
-        Me.Label1.TabIndex = 27
+        Me.Label1.TabIndex = 55
         Me.Label1.Text = "Klient*"
         '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(479, 604)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(89, 43)
-        Me.Button2.TabIndex = 53
-        Me.Button2.Text = "Usuń"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'UpdateOdbiorLogistyka
+        'UpdateOdbiorMagazyn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(14.0!, 29.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ClientSize = New System.Drawing.Size(725, 657)
+        Me.ClientSize = New System.Drawing.Size(810, 820)
+        Me.Controls.Add(Me.FlagPanel)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.ComboBox4)
         Me.Controls.Add(Me.ComboBox3)
@@ -318,14 +327,16 @@ Partial Class UpdateOdbiorLogistyka
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(7)
-        Me.Name = "UpdateOdbiorLogistyka"
+        Me.Name = "UpdateOdbiorMagazyn"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Aktualizacja Zlecenia"
+        Me.Text = "Aktualizuj Zlecenie"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
+    Friend WithEvents FlagPanel As FlowLayoutPanel
+    Friend WithEvents Button2 As Button
     Friend WithEvents ComboBox4 As ComboBox
     Friend WithEvents ComboBox3 As ComboBox
     Friend WithEvents Label12 As Label
@@ -352,5 +363,4 @@ Partial Class UpdateOdbiorLogistyka
     Friend WithEvents Label3 As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents Button2 As Button
 End Class

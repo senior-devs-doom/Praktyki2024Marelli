@@ -95,7 +95,7 @@ Partial Class KolejkowanieZaładunku
         Me.AutoScroll = True
         Me.BackColor = System.Drawing.Color.LightGray
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1902, 1009)
+        Me.ClientSize = New System.Drawing.Size(1903, 1011)
         Me.Controls.Add(Me.DebugMonkey)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.DoubleBuffered = True

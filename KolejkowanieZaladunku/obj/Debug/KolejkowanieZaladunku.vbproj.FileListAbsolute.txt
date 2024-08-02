@@ -20,5 +20,5 @@ D:\!!! Dokumenty !!!\M13401A\Pulpit\KolejkowanieZaladunku\KolejkowanieZaladunku\
 D:\!!! Dokumenty !!!\M13401A\Pulpit\KolejkowanieZaladunku\KolejkowanieZaladunku\obj\Debug\KolejkowanieZaladunku.PrzewoznikForm.resources
 D:\!!! Dokumenty !!!\M13401A\Pulpit\KolejkowanieZaladunku\KolejkowanieZaladunku\obj\Debug\KolejkowanieZaladunku.SzablonForm.resources
 D:\!!! Dokumenty !!!\M13401A\Pulpit\KolejkowanieZaladunku\KolejkowanieZaladunku\obj\Debug\KolejkowanieZaladunku.OdbiorForm.resources
-D:\!!! Dokumenty !!!\M13401A\Pulpit\KolejkowanieZaladunku\KolejkowanieZaladunku\obj\Debug\KolejkowanieZaladunku.UpdateFormMagazyn.resources
-D:\!!! Dokumenty !!!\M13401A\Pulpit\KolejkowanieZaladunku\KolejkowanieZaladunku\obj\Debug\KolejkowanieZaladunku.UpdateFormLogistyka.resources
+D:\!!! Dokumenty !!!\M13401A\Pulpit\KolejkowanieZaladunku\KolejkowanieZaladunku\obj\Debug\KolejkowanieZaladunku.UpdateOdbiorMagazyn.resources
+D:\!!! Dokumenty !!!\M13401A\Pulpit\KolejkowanieZaladunku\KolejkowanieZaladunku\obj\Debug\KolejkowanieZaladunku.UpdateOdbiorLogistyka.resources

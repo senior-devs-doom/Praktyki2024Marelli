@@ -1,4 +1,4 @@
-﻿Public Class UpdateOdbiorLogistyka
+﻿Public Class UpdateOdbiorMagazyn
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim sequel As New RapidConnection()
         Dim data As System.Data.DataRow
@@ -65,8 +65,65 @@
         TextBox4.Text = data(10)
         TextBox5.Text = data(11)
         TextBox6.Text = data(12)
-    End Sub
 
+        ''''''''''''''''''load flagi
+        sequel.SetCommand("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'praktyka' AND TABLE_NAME = 'tblOdbiory' AND DATA_TYPE = 'bit';")
+        sequel.RunDataQuery()
+        For i As Integer = 1 To sequel.SQLDT.Rows.Count - 1
+            ' Create a new instance of CheckBox
+
+            Dim checkBox As New CheckBox()
+
+            ' Set properties of the checkbox
+            checkBox.Text = sequel.SQLDT.Rows.Item(i).Item(0)
+            Flagi.Add(sequel.SQLDT.Rows.Item(i).Item(0))
+            checkBox.AutoSize = True ' Optional: To auto-size the checkbox according to its text
+            checkBox.Dock = DockStyle.Fill
+
+            'add event that enables box only if previous box is checked
+            'i LOGIC IS BIT SCUFFED HERE SINCE I STARTED ITERATING FROM 1
+            If i > 1 Then
+                checkBox.Enabled = False ' Initially disable all checkboxes except the first one
+                Dim previousCheckBox As CheckBox = CType(FlagPanel.Controls(i - 2), CheckBox)
+
+                ' Add CheckedChanged event handler for the previous checkbox that enables/disables the current one
+                AddHandler previousCheckBox.CheckedChanged, Sub(lambdaSender, LambdaEvent)
+                                                                ' Ensure control exists and avoid cross-thread operations
+                                                                If Not checkBox.IsDisposed AndAlso checkBox.InvokeRequired Then
+                                                                    checkBox.Invoke(Sub() checkBox.Enabled = previousCheckBox.Checked)
+                                                                Else
+                                                                    checkBox.Enabled = previousCheckBox.Checked
+                                                                End If
+                                                            End Sub
+            End If
+
+            ' Add the checkbox to the FlagPanel
+            FlagPanel.Controls.Add(checkBox)
+        Next
+        ''''''''load values into flagi
+        Dim FlagNamesString = String.Join(",", Flagi)
+        Dim FalseString As String = String.Join(",", Enumerable.Repeat("0", Flagi.Count))
+        sequel.SetCommand("SELECT " & FlagNamesString & " FROM praktyka.tblOdbiory  WHERE [IdZlecenia]=" & KolejkowanieZaładunku.id)
+        sequel.RunDataQuery()
+        'parse odbiór into form
+        For i As Integer = 0 To sequel.SQLDT.Rows.Item(0).ItemArray.Length - 1
+            If sequel.SQLDT.Rows.Item(0).Item(i) Is DBNull.Value Then
+                DirectCast(FlagPanel.Controls(i), CheckBox).Checked = False
+                FlagiValue.Add(False)
+            Else
+                DirectCast(FlagPanel.Controls(i), CheckBox).Checked = sequel.SQLDT.Rows.Item(0).Item(i)
+                FlagiValue.Add(sequel.SQLDT.Rows.Item(0).Item(i))
+            End If
+        Next
+        'We now should have a list of database Flags and corresponding values
+        'For i As Integer = 0 To Flagi.Count - 1
+        '    Console.WriteLine("Flag: " & Flagi(i) & ", Value: " & FlagiValue(i))
+        'Next
+
+        'if magazyn loaded form we assume they know about change from ligostyka and flag dissapears
+        sequel.SetCommand("update praktyka.tblZlecenia set Zmieniono = 0 WHERE [ZlecenieId] = " & KolejkowanieZaładunku.id)
+        sequel.RunDataQuery()
+    End Sub
     Private Sub TextBox4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox4.KeyPress
         If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
@@ -92,12 +149,12 @@
         End If
     End Sub
 
-
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim sequel As New RapidConnection()
         Dim cmd As String
-        Dim ZmianyStr As String
-        Dim ZmienionoUwagi = False 'since ZmianyStr always goes into uwagi we handle it a little diffrently
+        Dim UPDTZlecenie = True 'if no changes are detected in zlecenie dont update it (change to false)
+        Dim UPDTZlecenieResult = True ' if we do run zlecenie update save if it suceeded
+
         ' Check if ComboBox1 has a selected item
         If ComboBox1.SelectedIndex = -1 OrElse ComboBox1.Text = String.Empty Then
             MessageBox.Show("Proszę wybraćKlienta!") ' Customize the message as needed
@@ -177,82 +234,111 @@
         End If
 
         'detecting changes, creating input and column strings
-        cmd = "UPDATE praktyka.tblZlecenia SET "
-        ZmianyStr = " Zmieniono:{"
+        cmd = "UPDATE praktyka.tblZlecenia SET"
         If ComboBox1.SelectedIndex <> KlienciID.FindIndex(Function(x) x = zlecenieInDataBase.Rows.Item(0)(1)) Then
             cmd += " " & zlecenieInDataBase.Columns(1).ColumnName & " = " & KlienciID(ComboBox1.SelectedIndex) & ","
-            ZmianyStr += zlecenieInDataBase.Columns(1).ColumnName & ","
         End If
 
         If ComboBox2.SelectedIndex <> PrzewoznicyID.FindIndex(Function(x) x = zlecenieInDataBase.Rows.Item(0)(2)) Then
             cmd += " " & zlecenieInDataBase.Columns(2).ColumnName & " = " & PrzewoznicyID(ComboBox2.SelectedIndex) & ","
-            ZmianyStr += zlecenieInDataBase.Columns(2).ColumnName & ","
         End If
 
         If ComboBox3.SelectedIndex <> zlecenieInDataBase.Rows.Item(0)(3) Then
             cmd += " " & zlecenieInDataBase.Columns(3).ColumnName & " = " & ComboBox3.SelectedIndex & ","
-            ZmianyStr += zlecenieInDataBase.Columns(3).ColumnName & ","
         End If
 
         If ComboBox4.SelectedIndex <> zlecenieInDataBase.Rows.Item(0)(4) Then
             cmd += " " & zlecenieInDataBase.Columns(4).ColumnName & " = " & ComboBox4.SelectedIndex & ","
-            ZmianyStr += zlecenieInDataBase.Columns(4).ColumnName & ","
         End If
 
         If TextBox1.Text <> zlecenieInDataBase.Rows.Item(0)(5).ToString() Then
             cmd += " " & zlecenieInDataBase.Columns(5).ColumnName & " = '" & TextBox1.Text & "',"
-            ZmianyStr += zlecenieInDataBase.Columns(5).ColumnName & ","
         End If
 
         If TextBox2.Text <> zlecenieInDataBase.Rows.Item(0)(6).ToString() Then
             cmd += " " & zlecenieInDataBase.Columns(6).ColumnName & " = '" & TextBox2.Text & "',"
-            ZmianyStr += zlecenieInDataBase.Columns(6).ColumnName & ","
         End If
 
         If TextBox3.Text <> zlecenieInDataBase.Rows.Item(0)(7).ToString() Then
             cmd += " " & zlecenieInDataBase.Columns(7).ColumnName & " = '" & TextBox3.Text & "',"
-            ZmianyStr += zlecenieInDataBase.Columns(7).ColumnName & ","
         End If
 
         If DateTimePicker1.Value.ToString("yyyyMMdd") <> Convert.ToDateTime(zlecenieInDataBase.Rows.Item(0)(8)).ToString("yyyyMMdd") Then
             cmd += " " & zlecenieInDataBase.Columns(8).ColumnName & " = '" & DateTimePicker1.Value.ToString("yyyy-MM-dd") & "',"
-            ZmianyStr += zlecenieInDataBase.Columns(8).ColumnName & ","
         End If
 
         If MaskedTextBox1.Text & ":00" <> zlecenieInDataBase.Rows.Item(0)(9).ToString() Then
             cmd += " " & zlecenieInDataBase.Columns(9).ColumnName & " = '" & MaskedTextBox1.Text & ":00',"
-            ZmianyStr += zlecenieInDataBase.Columns(9).ColumnName & ","
         End If
 
         If TextBox4.Text <> zlecenieInDataBase.Rows.Item(0)(10).ToString() Then
             cmd += " " & zlecenieInDataBase.Columns(10).ColumnName & " = '" & TextBox4.Text & "',"
-            ZmianyStr += zlecenieInDataBase.Columns(10).ColumnName & ","
         End If
 
         If TextBox5.Text <> zlecenieInDataBase.Rows.Item(0)(11).ToString() Then
             cmd += " " & zlecenieInDataBase.Columns(11).ColumnName & " = '" & TextBox5.Text & "',"
-            ZmianyStr += zlecenieInDataBase.Columns(11).ColumnName & ","
         End If
 
         If TextBox6.Text <> zlecenieInDataBase.Rows.Item(0)(12).ToString() Then
-            ZmienionoUwagi = True
-            ZmianyStr += zlecenieInDataBase.Columns(12).ColumnName & ","
+            cmd += " " & zlecenieInDataBase.Columns(12).ColumnName & " = '" & TextBox6.Text & "',"
         End If
 
-        If cmd.EndsWith(",") Or ZmienionoUwagi Then ' if any value changed
-            ZmianyStr = ZmianyStr.TrimEnd(","c)
-            ZmianyStr += "}"
+        If cmd.EndsWith(",") Then
+            cmd = cmd.TrimEnd(New Char() {","c})
         Else
+            UPDTZlecenie = False
+        End If
+
+        cmd += " WHERE ZlecenieId = " & KolejkowanieZaładunku.id
+
+        If UPDTZlecenie Then
+            sequel.SetCommand(cmd)
+            sequel.RunQueryNoData()
+            sequel.QueryResult = UPDTZlecenieResult
+        End If
+
+        'Update Odbiory
+        'system rejestruje kto i kiedy zmienił daną flage
+
+        'making 2 extra lists cause it's the most striaghtforward and clear solution.
+        Dim Czas As String = Now.ToString("HH:mm:ss")
+        Dim FlagiChanged As New List(Of String)
+        Dim FlagiValueChanged As New List(Of Boolean)
+        For i As Integer = 0 To Flagi.Count - 1
+            If DirectCast(FlagPanel.Controls(i), CheckBox).Checked <> FlagiValue(i) Then ' value changed
+                FlagiChanged.Add(Flagi(i))
+                FlagiValueChanged.Add(DirectCast(FlagPanel.Controls(i), CheckBox).Checked)
+            End If
+        Next
+        'creating query
+        Dim stringBuilder As New System.Text.StringBuilder()
+        For i As Integer = 0 To FlagiChanged.Count - 1
+            If i > 0 Then
+                stringBuilder.Append(", ") ' Add a separator between items
+            End If
+            stringBuilder.AppendFormat("{0} = {1}, {0}PRAC = {2}, {0}CZAS = '{3}'", FlagiChanged(i), If(FlagiValueChanged(i), 1, 0), KolejkowanieZaładunku.UserId, Czas) 'True/False need converting to 1/0
+        Next
+        If stringBuilder.ToString <> "" Then
+            cmd = "UPDATE praktyka.tblOdbiory SET " & stringBuilder.ToString() & " where IdZlecenia=" & KolejkowanieZaładunku.id
+            sequel.SetCommand(cmd)
+            sequel.RunQueryNoData()
+            'For i As Integer = 0 To FlagiChanged.Count - 1
+            '    Console.WriteLine("Flag: " & FlagiChanged(i) & ", Value: " & FlagiValueChanged(i))
+            'Next
+        End If
+
+        'if no changes detected
+        If stringBuilder.ToString = "" AndAlso Not UPDTZlecenie Then
             MessageBox.Show("Nie wykryto zmiany żadnego pola!")
             Exit Sub
         End If
 
-        cmd += zlecenieInDataBase.Columns(12).ColumnName & " = '" & TextBox6.Text & ZmianyStr & "', Zmieniono = 1  WHERE ZlecenieId = " & KolejkowanieZaładunku.id
-
-        sequel.SetCommand(cmd)
-        sequel.RunQueryNoData()
+        'if good then we good
         If sequel.QueryResult Then
             MessageBox.Show("Zaktualizowano Zlecenie!")
+            If UPDTZlecenieResult = False Then
+                MessageBox.Show("Wystąpił błąd przy aktualizacji pól z literami")
+            End If
             Me.Close()
         End If
 
@@ -308,4 +394,8 @@
     Private zlecenieInDataBase As DataTable
     Private SOSRampy As New List(Of String)
     Private KatRampy As New List(Of String)
+    'can't be asked to make this 2 dimensional list, list 1 holds checkbox names, list 2 holds their values. Spoilers, when we Update we make more lists.
+    Private Flagi As New List(Of String)
+    Private FlagiValue As New List(Of Boolean)
+
 End Class

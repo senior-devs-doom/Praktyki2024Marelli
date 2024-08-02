@@ -9,7 +9,11 @@
             MessageBox.Show("Kod Klienta nie może być pusty!")
             Exit Sub
         End If
-        sequel.SetCommand($"insert into praktyka.tblKlienci(Nazwa,Kod) values ('" & TextBox1.Text & "'," & TextBox2.Text & ")")
+        If TextBox3.Text = "" Then
+            MessageBox.Show("Proszę wypełnić pole które jest przelicznikiem średniego czasu potrzebnego na przygotowanie zlecenia w zależności od ilości zamówionych palet™, jest ono zależnie głównie od typu palet.")
+            Exit Sub
+        End If
+        sequel.SetCommand($"insert into praktyka.tblKlienci(Nazwa,Kod,PaletToMin) values ('" & TextBox1.Text & "'," & TextBox2.Text & "," & TextBox3.Text & ")")
         sequel.RunQueryNoData()
         If sequel.QueryResult = True Then
             MessageBox.Show("Dodano Klienta!")
@@ -24,6 +28,13 @@
         If sequel.QueryResult = True Then
             MessageBox.Show("Usunięto Klienta!")
             Me.Close()
+        End If
+    End Sub
+    Private Sub TextBox3_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox3.KeyPress
+        ' Check if the character is not a digit or a control character
+        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            ' Ignore the character by setting Handled to True
+            e.Handled = True
         End If
     End Sub
 End Class

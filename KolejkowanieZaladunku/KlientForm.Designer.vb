@@ -29,6 +29,8 @@ Partial Class DodajKlienta
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Label1
@@ -69,7 +71,7 @@ Partial Class DodajKlienta
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(116, 197)
+        Me.Button1.Location = New System.Drawing.Point(162, 265)
         Me.Button1.Margin = New System.Windows.Forms.Padding(7)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(175, 51)
@@ -79,19 +81,37 @@ Partial Class DodajKlienta
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(391, 197)
+        Me.Button2.Location = New System.Drawing.Point(418, 265)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(175, 51)
         Me.Button2.TabIndex = 5
         Me.Button2.Text = "Usuń"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Label3
+        '
+        Me.Label3.Location = New System.Drawing.Point(16, 159)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(298, 64)
+        Me.Label3.TabIndex = 6
+        Me.Label3.Text = "Minuty potrzebne na obsłużenie jednej palety"
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Location = New System.Drawing.Point(329, 176)
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(70, 35)
+        Me.TextBox3.TabIndex = 7
+        Me.TextBox3.Text = "1"
+        '
         'DodajKlienta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(14.0!, 29.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ClientSize = New System.Drawing.Size(754, 297)
+        Me.ClientSize = New System.Drawing.Size(754, 360)
+        Me.Controls.Add(Me.TextBox3)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.TextBox2)
@@ -115,4 +135,6 @@ Partial Class DodajKlienta
     Friend WithEvents Label2 As Label
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents Label3 As Label
+    Friend WithEvents TextBox3 As TextBox
 End Class

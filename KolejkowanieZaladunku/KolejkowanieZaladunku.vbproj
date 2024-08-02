@@ -73,10 +73,10 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="UpdateOdbiorMagazyn.Designer.vb">
+      <DependentUpon>UpdateOdbiorMagazyn.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form1.vb">
+    <Compile Include="UpdateOdbiorMagazyn.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UpdateOdbiorLogistyka.Designer.vb">
@@ -140,8 +140,8 @@
     <Compile Include="RapidConnection.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="UpdateOdbiorMagazyn.resx">
+      <DependentUpon>UpdateOdbiorMagazyn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateOdbiorLogistyka.resx">
       <DependentUpon>UpdateOdbiorLogistyka.vb</DependentUpon>
