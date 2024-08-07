@@ -24,7 +24,6 @@ Partial Class UpdateOdbiorMagazyn
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(UpdateOdbiorMagazyn))
         Me.FlagPanel = New System.Windows.Forms.FlowLayoutPanel()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.ComboBox4 = New System.Windows.Forms.ComboBox()
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
         Me.Label12 = New System.Windows.Forms.Label()
@@ -60,18 +59,11 @@ Partial Class UpdateOdbiorMagazyn
         Me.FlagPanel.Size = New System.Drawing.Size(353, 133)
         Me.FlagPanel.TabIndex = 82
         '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(479, 763)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(89, 43)
-        Me.Button2.TabIndex = 81
-        Me.Button2.Text = "Usuń"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
         'ComboBox4
         '
-        Me.ComboBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.ComboBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox4.Enabled = False
         Me.ComboBox4.FormattingEnabled = True
         Me.ComboBox4.Location = New System.Drawing.Point(370, 365)
         Me.ComboBox4.Name = "ComboBox4"
@@ -81,7 +73,9 @@ Partial Class UpdateOdbiorMagazyn
         'ComboBox3
         '
         Me.ComboBox3.AutoCompleteCustomSource.AddRange(New String() {"Sosnowiec", "Katowice"})
-        Me.ComboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.ComboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox3.Enabled = False
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Items.AddRange(New Object() {"Sosnowiec", "Katowice"})
         Me.ComboBox3.Location = New System.Drawing.Point(370, 322)
@@ -135,6 +129,7 @@ Partial Class UpdateOdbiorMagazyn
         '
         'TextBox5
         '
+        Me.TextBox5.Enabled = False
         Me.TextBox5.Location = New System.Drawing.Point(370, 456)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(59, 35)
@@ -149,6 +144,7 @@ Partial Class UpdateOdbiorMagazyn
         '
         'TextBox3
         '
+        Me.TextBox3.Enabled = False
         Me.TextBox3.Location = New System.Drawing.Point(370, 199)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(285, 35)
@@ -156,6 +152,7 @@ Partial Class UpdateOdbiorMagazyn
         '
         'TextBox2
         '
+        Me.TextBox2.Enabled = False
         Me.TextBox2.Location = New System.Drawing.Point(370, 156)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(285, 35)
@@ -185,6 +182,8 @@ Partial Class UpdateOdbiorMagazyn
         '
         'ComboBox2
         '
+        Me.ComboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.Location = New System.Drawing.Point(370, 54)
         Me.ComboBox2.Name = "ComboBox2"
@@ -193,7 +192,9 @@ Partial Class UpdateOdbiorMagazyn
         '
         'ComboBox1
         '
-        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox1.Enabled = False
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Location = New System.Drawing.Point(370, 6)
         Me.ComboBox1.Name = "ComboBox1"
@@ -223,9 +224,9 @@ Partial Class UpdateOdbiorMagazyn
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(4, 108)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(344, 29)
+        Me.Label8.Size = New System.Drawing.Size(354, 29)
         Me.Label8.TabIndex = 62
-        Me.Label8.Text = "Nr. Rejestracyjny(przewoźnika)"
+        Me.Label8.Text = "Nr. Rejestracyjny(przewoźnika)*"
         '
         'Label7
         '
@@ -297,7 +298,6 @@ Partial Class UpdateOdbiorMagazyn
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(810, 820)
         Me.Controls.Add(Me.FlagPanel)
-        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.ComboBox4)
         Me.Controls.Add(Me.ComboBox3)
         Me.Controls.Add(Me.Label12)
@@ -336,7 +336,6 @@ Partial Class UpdateOdbiorMagazyn
     End Sub
 
     Friend WithEvents FlagPanel As FlowLayoutPanel
-    Friend WithEvents Button2 As Button
     Friend WithEvents ComboBox4 As ComboBox
     Friend WithEvents ComboBox3 As ComboBox
     Friend WithEvents Label12 As Label

@@ -119,9 +119,9 @@ Partial Class OdbiorForm
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(12, 135)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(344, 29)
+        Me.Label8.Size = New System.Drawing.Size(354, 29)
         Me.Label8.TabIndex = 7
-        Me.Label8.Text = "Nr. Rejestracyjny(przewoźnika)"
+        Me.Label8.Text = "Nr. Rejestracyjny(przewoźnika)*"
         '
         'Label9
         '
@@ -143,7 +143,8 @@ Partial Class OdbiorForm
         '
         'ComboBox1
         '
-        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Location = New System.Drawing.Point(378, 33)
         Me.ComboBox1.Name = "ComboBox1"
@@ -152,6 +153,8 @@ Partial Class OdbiorForm
         '
         'ComboBox2
         '
+        Me.ComboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.Location = New System.Drawing.Point(378, 81)
         Me.ComboBox2.Name = "ComboBox2"
@@ -255,7 +258,8 @@ Partial Class OdbiorForm
         'ComboBox3
         '
         Me.ComboBox3.AutoCompleteCustomSource.AddRange(New String() {"Sosnowiec", "Katowice"})
-        Me.ComboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.ComboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Items.AddRange(New Object() {"Sosnowiec", "Katowice"})
         Me.ComboBox3.Location = New System.Drawing.Point(378, 349)
@@ -265,7 +269,8 @@ Partial Class OdbiorForm
         '
         'ComboBox4
         '
-        Me.ComboBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.ComboBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBox4.FormattingEnabled = True
         Me.ComboBox4.Location = New System.Drawing.Point(378, 392)
         Me.ComboBox4.Name = "ComboBox4"

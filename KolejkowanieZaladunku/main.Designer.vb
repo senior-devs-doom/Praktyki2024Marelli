@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class KolejkowanieZaładunku
+Partial Class main
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,8 +22,10 @@ Partial Class KolejkowanieZaładunku
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(KolejkowanieZaładunku))
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(main))
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.DisplayOnlyRefreshTimer = New System.Windows.Forms.Timer(Me.components)
         Me.DebugMonkey = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
@@ -75,6 +77,11 @@ Partial Class KolejkowanieZaładunku
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(8, 1080)
         Me.TableLayoutPanel1.TabIndex = 1
         '
+        'DisplayOnlyRefreshTimer
+        '
+        Me.DisplayOnlyRefreshTimer.Enabled = True
+        Me.DisplayOnlyRefreshTimer.Interval = 300000
+        '
         'DebugMonkey
         '
         Me.DebugMonkey.BackgroundImage = Global.KolejkowanieZaladunku.My.Resources.Resources.Marelli_logo_primary_RGB_POS_1_2263_
@@ -89,13 +96,13 @@ Partial Class KolejkowanieZaładunku
         Me.DebugMonkey.UseVisualStyleBackColor = True
         Me.DebugMonkey.Visible = False
         '
-        'KolejkowanieZaładunku
+        'main
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.AutoScroll = True
         Me.BackColor = System.Drawing.Color.LightGray
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.ClientSize = New System.Drawing.Size(1903, 1011)
+        Me.ClientSize = New System.Drawing.Size(1902, 1011)
         Me.Controls.Add(Me.DebugMonkey)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.DoubleBuffered = True
@@ -103,7 +110,7 @@ Partial Class KolejkowanieZaładunku
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(7)
-        Me.Name = "KolejkowanieZaładunku"
+        Me.Name = "main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "KolejkowanieZaładunku"
         Me.ResumeLayout(False)
@@ -113,4 +120,5 @@ Partial Class KolejkowanieZaładunku
 
     Friend WithEvents DebugMonkey As Button
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents DisplayOnlyRefreshTimer As Timer
 End Class

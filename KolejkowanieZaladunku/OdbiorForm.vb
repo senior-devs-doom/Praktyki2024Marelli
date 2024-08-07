@@ -1,4 +1,34 @@
 ﻿Public Class OdbiorForm
+    Private Property UserId As Integer
+    Private Property locationButtonText As String
+    Private Property OdbiorRamp As String
+    Private Property OdbiorCzas As String
+    Private Property OdbiorData As String
+
+    Private KlienciID As New List(Of Integer) ' list holding id's with indexes equivalent to indexes in ComboBox1
+    Private KlienciPrzelicznik As New List(Of Integer) ' list holding PaletyToMin with indexes equivalent to indexes in ComboBox1
+    Private PrzewoznicyID As New List(Of Integer) ' list holding id's with indexes equivalent to indexes in ComboBox2
+    Private SOSRampy As New List(Of String)
+    Private KATRampy As New List(Of String)
+
+    Public Sub New(UserId As Integer,
+               Optional locationButtonText As String = "",
+               Optional OdbiorRamp As String = "",
+               Optional OdbiorCzas As String = "",
+               Optional OdbiorData As String = "")
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        _UserId = UserId
+        _locationButtonText = locationButtonText
+        _OdbiorRamp = OdbiorRamp
+        _OdbiorCzas = OdbiorCzas
+        _OdbiorData = OdbiorData
+
+
+    End Sub
     Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim sequel As New RapidConnection()
         sequel.SetCommand("select IdKlienta,CONCAT(Kod,'  ',Nazwa),PaletToMin from praktyka.tblKlienci")
@@ -19,20 +49,20 @@
         sequel.SetCommand("select * from praktyka.tblRampyKatowice")
         sequel.RunDataQuery()
         For i As Integer = 0 To sequel.SQLDT.Rows.Count - 1
-            KatRampy.Add(sequel.SQLDT.Rows.Item(i).Item(1))
+            KATRampy.Add(sequel.SQLDT.Rows.Item(i).Item(1))
         Next
         'set rampy
-        ComboBox3.SelectedItem = KolejkowanieZaładunku.locationButton.Text
+        ComboBox3.SelectedItem = locationButtonText
         ComboBox3_SelectedIndexChanged()
 
-        If KolejkowanieZaładunku.OdbiorRamp <> "" Then
-            ComboBox4.SelectedItem = KolejkowanieZaładunku.OdbiorRamp
+        If OdbiorRamp <> "" Then
+            ComboBox4.SelectedItem = OdbiorRamp
         End If
-        If KolejkowanieZaładunku.OdbiorCzas <> "" Then
-            MaskedTextBox1.Text = KolejkowanieZaładunku.OdbiorCzas
+        If OdbiorCzas <> "" Then
+            MaskedTextBox1.Text = OdbiorCzas
         End If
-        If KolejkowanieZaładunku.OdbiorData <> "" Then
-            DateTimePicker1.Text = KolejkowanieZaładunku.OdbiorData
+        If OdbiorData <> "" Then
+            DateTimePicker1.Text = OdbiorData
         End If
 
         sequel.SetCommand("select IdPrzewoznika,CONCAT(Kod,'  ',Nazwa) from praktyka.tblPrzewoznicy where Aktywny=1")
@@ -83,9 +113,30 @@
             Exit Sub
         End If
 
-        ' Check if ComboBox2 has a selected item
+        ' Check if TextBox1 IS EMPTY
+        If TextBox1.Text = "" Then
+            MessageBox.Show("Proszę wprowadzić numer rejestracyjny!") ' Customize the message as needed
+            Exit Sub
+        End If
+
+        ' Check if TextBox1 is too short
+        If TextBox1.Text.Length < 5 Then
+            MessageBox.Show("numer rejestracyjny jest za krótki.") ' Customize the message as needed
+            Exit Sub
+        End If
+
         If ComboBox2.SelectedIndex = -1 OrElse ComboBox2.Text = String.Empty Then
             MessageBox.Show("Proszę wybrać Przewoźnika!") ' Customize the message as needed
+            Exit Sub
+        End If
+
+        If ComboBox3.SelectedIndex = -1 OrElse ComboBox3.Text = String.Empty Then
+            MessageBox.Show("Proszę wybrać Lokalizację!") ' Customize the message as needed
+            Exit Sub
+        End If
+
+        If ComboBox4.SelectedIndex = -1 OrElse ComboBox4.Text = String.Empty Then
+            MessageBox.Show("Proszę wybrać Rampę!") ' Customize the message as needed
             Exit Sub
         End If
 
@@ -106,10 +157,33 @@
             MessageBox.Show("Czas nie może być pusty!")
             Exit Sub
         End If
+
+        'check if date is atleast 1 hour into the future
+        Dim ts As TimeSpan
+        TimeSpan.TryParse(MaskedTextBox1.Text, ts)
+        If DateTimePicker1.Value.Date.Add(ts) < Now.AddHours(1) Then
+            MessageBox.Show("Wybrana data/czas jest zbyt wczesna! Zlecenie może być zlecone najwcześniej na godzine od chwili obecnej.")
+            Exit Sub
+        End If
+
+        'maximum palety in transport specjalny = 15
+        If Convert.ToInt32(TextBox4.Text) > 15 AndAlso ComboBox3.SelectedIndex = 0 AndAlso ComboBox4.SelectedIndex = 3 Then
+            MessageBox.Show("Maksymalna liczba palet dla 'Sosnowiec Transport specjalny' to 15")
+            Exit Sub
+        End If
+
         'Check if Zlecenie is not overlapping with already existing Zlecenia
         'previous
-        cmd = "select top 1 tblZlecenia.Godzina, tblZlecenia.Czas, tblZlecenia.ZlecenieId from praktyka.tblZlecenia where tblZlecenia.Data='" & DateTimePicker1.Value.Date & "' and lokalizacjaID=" & ComboBox3.SelectedIndex & " and rampaId=" & ComboBox4.SelectedIndex & " and Godzina < '" & MaskedTextBox1.Text & ":00' order by Godzina desc"
+        cmd = "SELECT TOP 1 tblZlecenia.Godzina, tblZlecenia.Czas, tblZlecenia.ZlecenieId " &
+       "FROM praktyka.tblZlecenia " &
+       "WHERE tblZlecenia.Data = @Data AND lokalizacjaID = @LokalizacjaID AND rampaId = @RampaId " &
+       "AND Godzina < @Godzina ORDER BY Godzina DESC"
+
         sequel.SetCommand(cmd)
+        sequel.AddParam("@Data", DateTimePicker1.Value.Date)
+        sequel.AddParam("@LokalizacjaID", ComboBox3.SelectedIndex)
+        sequel.AddParam("@RampaId", ComboBox4.SelectedIndex)
+        sequel.AddParam("@Godzina", MaskedTextBox1.Text & ":00")
         sequel.RunDataQuery()
         Dim startMinuteCurrent = CInt(MaskedTextBox1.Text.Split(":"c)(0)) * 60 + CInt(MaskedTextBox1.Text.Split(":"c)(1))
         If sequel.SQLDT.Rows.Count <> 0 Then 'zlecenie exists -> checking previous zlecenie from current day
@@ -119,9 +193,16 @@
                 Exit Sub
             End If
         Else 'checking last zlecenie from previous day
-            cmd = "select top 1 tblZlecenia.Godzina, tblZlecenia.Czas, tblZlecenia.ZlecenieId from praktyka.tblZlecenia where tblZlecenia.Data='" & DateTimePicker1.Value.Date.AddDays(-1) & "' and lokalizacjaID=" & ComboBox3.SelectedIndex & " and rampaId=" & ComboBox4.SelectedIndex & " AND (DATEPART(HOUR, Godzina) * 60 + DATEPART(MINUTE, Godzina) + Czas) > 1440 order by Godzina "
-            Console.WriteLine(cmd)
+            cmd = "SELECT TOP 1 tblZlecenia.Godzina, tblZlecenia.Czas, tblZlecenia.ZlecenieId " &
+            "FROM praktyka.tblZlecenia " &
+            "WHERE tblZlecenia.Data = @Data AND lokalizacjaID = @LokalizacjaID AND rampaId = @RampaId " &
+            "AND (DATEPART(HOUR, Godzina) * 60 + DATEPART(MINUTE, Godzina) + Czas) > 1440 " &
+            "ORDER BY Godzina"
+
             sequel.SetCommand(cmd)
+            sequel.AddParam("@Data", DateTimePicker1.Value.Date.AddDays(-1))
+            sequel.AddParam("@LokalizacjaID", ComboBox3.SelectedIndex)
+            sequel.AddParam("@RampaId", ComboBox4.SelectedIndex)
             sequel.RunDataQuery()
             If sequel.SQLDT.Rows.Count <> 0 Then 'there was zlecenie yesterday that ran past midnight
                 Dim endMinutePrevious = sequel.SQLDT.Rows.Item(0)(1) - (TimeSpan.FromDays(1) - sequel.SQLDT.Rows.Item(0)(0)).TotalMinutes 'minuty = minuty - czas pomiędzy rozpoczęciem a północą
@@ -132,8 +213,16 @@
             End If
         End If
         'next
-        cmd = "select top 1 tblZlecenia.Godzina, tblZlecenia.Czas, tblZlecenia.ZlecenieId from praktyka.tblZlecenia where tblZlecenia.Data='" & DateTimePicker1.Value.Date & "' and lokalizacjaID=" & ComboBox3.SelectedIndex & " and rampaId=" & ComboBox4.SelectedIndex & "  and Godzina >'" & MaskedTextBox1.Text & ":00' order by Godzina"
+        cmd = "SELECT TOP 1 tblZlecenia.Godzina, tblZlecenia.Czas, tblZlecenia.ZlecenieId " &
+        "FROM praktyka.tblZlecenia " &
+        "WHERE tblZlecenia.Data = @Data AND lokalizacjaID = @LokalizacjaID AND rampaId = @RampaId " &
+        "AND Godzina > @Godzina ORDER BY Godzina"
+
         sequel.SetCommand(cmd)
+        sequel.AddParam("@Data", DateTimePicker1.Value.Date)
+        sequel.AddParam("@LokalizacjaID", ComboBox3.SelectedIndex)
+        sequel.AddParam("@RampaId", ComboBox4.SelectedIndex)
+        sequel.AddParam("@Godzina", MaskedTextBox1.Text & ":00")
         sequel.RunDataQuery()
         Dim endMinuteCurrent = CInt(MaskedTextBox1.Text.Split(":"c)(0)) * 60 + CInt(MaskedTextBox1.Text.Split(":"c)(1)) + CInt(TextBox5.Text)
         If sequel.SQLDT.Rows.Count <> 0 Then 'zlecenie exists -> checking next zlecenie from current day
@@ -143,8 +232,14 @@
                 Exit Sub
             End If
         Else 'checking first zlecenie from next day
-            cmd = "select top 1 tblZlecenia.Godzina, tblZlecenia.Czas, tblZlecenia.ZlecenieId from praktyka.tblZlecenia where tblZlecenia.Data='" & DateTimePicker1.Value.AddDays(1).Date & "' and lokalizacjaID=" & ComboBox3.SelectedIndex & " and rampaId=" & ComboBox4.SelectedIndex & " order by Godzina desc"
+            cmd = "SELECT TOP 1 tblZlecenia.Godzina, tblZlecenia.Czas, tblZlecenia.ZlecenieId " &
+            "FROM praktyka.tblZlecenia " &
+            "WHERE tblZlecenia.Data = @Data AND lokalizacjaID = @LokalizacjaID AND rampaId = @RampaId " &
+            "ORDER BY Godzina DESC"
             sequel.SetCommand(cmd)
+            sequel.AddParam("@Data", DateTimePicker1.Value.AddDays(1).Date)
+            sequel.AddParam("@LokalizacjaID", ComboBox3.SelectedIndex)
+            sequel.AddParam("@RampaId", ComboBox4.SelectedIndex)
             sequel.RunDataQuery()
             If endMinuteCurrent > 1440 AndAlso sequel.SQLDT.Rows.Count <> 0 Then 'current zlecenie will run past midnight and there is zlecenie tommorow
                 endMinuteCurrent -= 1440 'remaining minutes
@@ -159,15 +254,35 @@
 
 
         'input zlecenie
-        cmd = $"insert into praktyka.tblZlecenia(KlientId,PrzewoznikId,LokalizacjaId,RampaId,NrRejestracyjny,NrTransportu,NrWz,Data,Godzina,Palety,Czas,Uwagi)    OUTPUT INSERTED.ZlecenieId    values (" & KlienciID(ComboBox1.SelectedIndex) & "," & PrzewoznicyID(ComboBox2.SelectedIndex) & "," & ComboBox3.SelectedIndex & "," & ComboBox4.SelectedIndex & ",'" & TextBox1.Text & "','" & TextBox2.Text & "','" & TextBox3.Text & "','" & DateTimePicker1.Value.Date & "','" & MaskedTextBox1.Text & ":00'," & TextBox4.Text & "," & TextBox5.Text & ",'" & TextBox6.Text & "')"
+        cmd = "INSERT INTO praktyka.tblZlecenia(KlientId,PrzewoznikId,LokalizacjaId,RampaId,NrRejestracyjny,NrTransportu,NrWz,Data,Godzina,Palety,Czas,Uwagi) " &
+       "OUTPUT INSERTED.ZlecenieId " &
+       "VALUES (@KlientId, @PrzewoznikId, @LokalizacjaId, @RampaId, @NrRejestracyjny, @NrTransportu, @NrWz, @Data, @Godzina, @Palety, @Czas, @Uwagi)"
+
         sequel.SetCommand(cmd)
+        sequel.AddParam("@KlientId", KlienciID(ComboBox1.SelectedIndex))
+        sequel.AddParam("@PrzewoznikId", PrzewoznicyID(ComboBox2.SelectedIndex))
+        sequel.AddParam("@LokalizacjaId", ComboBox3.SelectedIndex)
+        sequel.AddParam("@RampaId", ComboBox4.SelectedIndex)
+        sequel.AddParam("@NrRejestracyjny", TextBox1.Text)
+        sequel.AddParam("@NrTransportu", TextBox2.Text)
+        sequel.AddParam("@NrWz", TextBox3.Text)
+        sequel.AddParam("@Data", DateTimePicker1.Value.Date)
+        sequel.AddParam("@Godzina", MaskedTextBox1.Text & ":00")
+        sequel.AddParam("@Palety", TextBox4.Text)
+        sequel.AddParam("@Czas", TextBox5.Text)
+        sequel.AddParam("@Uwagi", TextBox6.Text)
+
         sequel.RunDataQuery()
 
         If sequel.QueryResult = True Then
             'create odbiór for zlecenie
             createdId = sequel.SQLDT.Rows.Item(0).Item(0)
-            cmd = $"insert into praktyka.tblOdbiory(IdZlecenia,Utworzenie,UtworzeniePrac,UtworzenieCZAS)  values (" & createdId & ", 1 ," & KolejkowanieZaładunku.UserId & ",'" & Now() & "')"
+            cmd = "INSERT INTO praktyka.tblOdbiory(IdZlecenia, Utworzenie, UtworzeniePrac, UtworzenieCZAS) " &
+            "VALUES (@IdZlecenia, 1, @UtworzeniePrac, @UtworzenieCZAS)"
             sequel.SetCommand(cmd)
+            sequel.AddParam("@IdZlecenia", createdId) ' Assuming createdId is a variable holding the ID
+            sequel.AddParam("@UtworzeniePrac", UserId) ' Assuming UserId is a variable holding the user ID
+            sequel.AddParam("@UtworzenieCZAS", Now) ' Directly using Now() function to get current date and time
             sequel.RunQueryNoData()
             If sequel.QueryResult = True Then
                 MessageBox.Show("Dodano Zlecenie!")
@@ -200,10 +315,5 @@
         ComboBox4.Text = String.Empty ' Clears the text
     End Sub
 
-    Private KlienciID As New List(Of Integer) ' list holding id's with indexes equivalent to indexes in ComboBox1
-    Private KlienciPrzelicznik As New List(Of Integer) ' list holding PaletyToMin with indexes equivalent to indexes in ComboBox1
-    Private PrzewoznicyID As New List(Of Integer) ' list holding id's with indexes equivalent to indexes in ComboBox2
-    Private SOSRampy As New List(Of String)
-    Private KATRampy As New List(Of String)
 
 End Class

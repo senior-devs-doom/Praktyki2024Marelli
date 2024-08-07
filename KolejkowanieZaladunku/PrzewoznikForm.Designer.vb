@@ -30,11 +30,12 @@ Partial Class PrzewoznikForm
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(151, 264)
+        Me.Button1.Location = New System.Drawing.Point(91, 262)
         Me.Button1.Margin = New System.Windows.Forms.Padding(7)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(175, 51)
@@ -93,12 +94,21 @@ Partial Class PrzewoznikForm
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(370, 264)
+        Me.Button2.Location = New System.Drawing.Point(310, 262)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(175, 51)
         Me.Button2.TabIndex = 12
         Me.Button2.Text = "Usuń"
         Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(525, 262)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(175, 51)
+        Me.Button3.TabIndex = 13
+        Me.Button3.Text = "Aktualizuj"
+        Me.Button3.UseVisualStyleBackColor = True
         '
         'PrzewoznikForm
         '
@@ -106,6 +116,7 @@ Partial Class PrzewoznikForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(851, 363)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.Button1)
@@ -131,4 +142,5 @@ Partial Class PrzewoznikForm
     Friend WithEvents Label1 As Label
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
 End Class

@@ -1,0 +1,66 @@
+
+		DO ZROBIENIA:
+
+range varcharów w bazie danych i walidacja w polach input(MAX/MIN?)
+spam emailami
+raporty
+SAP
+
+specjalne blokowanie ramp w przypadku zleceń na rampie "Hala B":
+Zlecenie blokuje również swój czas rampie '2' i '3'
+30+ palet zlecenie blokuje również czas na godzinę przed i po zleceniu na rampach
+
+-------------do obgadania
+uprawnienia logistyki i magazynu narazie potwierdził tylko Damian
+FLAGA OPÓŹNIENIE *(nie pamiętam dokładnie czy chcieli żeby przesunięta dostawa nie była widoczna jako opóźniona(tak jest teraz) czy żeby była)
+
+
+		NOTATKI:
+
+flaga zmiana aktywuje się kiedy logistyka wykonuje Update i dezaktywuje kiedy magazyn wejdzie do formularza ze zleceniem
+Zmiany dodawane są do kolumny Uwagi!
+zlecenie może być zaplanowane na najwcześniej godzine od chwili obecnej, może być potem zmienone na najwcześniej chwile obecną.
+priorytet kolorowania: zielone > czerwone > niebieskie > żółte
+Flagi rejestrują zmiany, nie blokują się kiedy są ustawione na True
+przerwa techniczna to po prostu może być zlecenie
+Zlecenia nie zawijają się na więcej niż 1 dzień(problem tylko jeżeli zlecenia trwa +24H)
+min nr. rejestracyjny 5 znaków
+max palety transport specjalny 15
+bug?:padding pomiędzy textem a czubkiem labela to problem dla krótkich zleceń, brzydki jak noc na gułagu, chyba nie da sie naprawić
+usuń klienta/przewoźnika usuwa wszystkie rekordy o podanym, NIEPUSTYM Kodzie i Nazwie
+Aktualizuj klienta/przewoźnika wprowadza podany kod,paletyToMin,aktywny do rekordu o podanej Nazwie. CZYLI PRACOWNIK MUSI PRZEPISAĆ KOD JEŚLI NIE CHCE ŻEBY BYŁ ZMIENIONY
+
+
+		UPRAWNIENIA:
+
+1= możliwość edycji 
+0=brak możliwości
+				Logistyka	Magazyn		W trakcie trwania zlecenia
+
+Klient				0		0		0
+
+Przewoźnik			1		1		0
+
+Nr. Rejestracyjny		1		1		1
+
+Nr. Transportu			0		0		0
+
+Nr. Wz				0		0		0
+
+Data				1		1		0
+
+Godzina				1		1		0
+
+Lokalizacja			0		0		0
+
+Rampa				0		0		0
+
+Palety				0		1		0
+
+Czas trwania zlecenia		0		0		0
+
+Uwagi				1		1		1
+
+Stopień ukończenia		0		1		1
+
+usunięcie zlecenia		1		0		0

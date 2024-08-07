@@ -54,7 +54,9 @@ Partial Class UpdateOdbiorLogistyka
         '
         'ComboBox4
         '
-        Me.ComboBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.ComboBox4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox4.Enabled = False
         Me.ComboBox4.FormattingEnabled = True
         Me.ComboBox4.Location = New System.Drawing.Point(370, 365)
         Me.ComboBox4.Name = "ComboBox4"
@@ -64,7 +66,9 @@ Partial Class UpdateOdbiorLogistyka
         'ComboBox3
         '
         Me.ComboBox3.AutoCompleteCustomSource.AddRange(New String() {"Sosnowiec", "Katowice"})
-        Me.ComboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.ComboBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox3.Enabled = False
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Items.AddRange(New Object() {"Sosnowiec", "Katowice"})
         Me.ComboBox3.Location = New System.Drawing.Point(370, 322)
@@ -118,6 +122,7 @@ Partial Class UpdateOdbiorLogistyka
         '
         'TextBox5
         '
+        Me.TextBox5.Enabled = False
         Me.TextBox5.Location = New System.Drawing.Point(370, 456)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(59, 35)
@@ -125,6 +130,7 @@ Partial Class UpdateOdbiorLogistyka
         '
         'TextBox4
         '
+        Me.TextBox4.Enabled = False
         Me.TextBox4.Location = New System.Drawing.Point(370, 415)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(59, 35)
@@ -132,6 +138,7 @@ Partial Class UpdateOdbiorLogistyka
         '
         'TextBox3
         '
+        Me.TextBox3.Enabled = False
         Me.TextBox3.Location = New System.Drawing.Point(370, 199)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(285, 35)
@@ -139,6 +146,7 @@ Partial Class UpdateOdbiorLogistyka
         '
         'TextBox2
         '
+        Me.TextBox2.Enabled = False
         Me.TextBox2.Location = New System.Drawing.Point(370, 156)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(285, 35)
@@ -168,6 +176,8 @@ Partial Class UpdateOdbiorLogistyka
         '
         'ComboBox2
         '
+        Me.ComboBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.Location = New System.Drawing.Point(370, 54)
         Me.ComboBox2.Name = "ComboBox2"
@@ -176,7 +186,9 @@ Partial Class UpdateOdbiorLogistyka
         '
         'ComboBox1
         '
-        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox1.Enabled = False
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Location = New System.Drawing.Point(370, 6)
         Me.ComboBox1.Name = "ComboBox1"
@@ -206,9 +218,9 @@ Partial Class UpdateOdbiorLogistyka
         Me.Label8.AutoSize = True
         Me.Label8.Location = New System.Drawing.Point(4, 108)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(344, 29)
+        Me.Label8.Size = New System.Drawing.Size(354, 29)
         Me.Label8.TabIndex = 34
-        Me.Label8.Text = "Nr. Rejestracyjny(przewoźnika)"
+        Me.Label8.Text = "Nr. Rejestracyjny(przewoźnika)*"
         '
         'Label7
         '
@@ -275,7 +287,7 @@ Partial Class UpdateOdbiorLogistyka
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(479, 604)
+        Me.Button2.Location = New System.Drawing.Point(489, 604)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(89, 43)
         Me.Button2.TabIndex = 53
